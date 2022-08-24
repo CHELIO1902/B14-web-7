@@ -106,5 +106,10 @@ router.put("/updatemployee/:id", async (req, res) => {
 			.status(201)
 			.json({ message: "the employee has been updated with success!!" });
 
-});
+} );
+
+//Find all the employee working on the department_id = 10(employees)
+
+//Find all the countries on europe (countries, regions)
+
 module.exports = router;
