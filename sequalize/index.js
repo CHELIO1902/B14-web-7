@@ -4,9 +4,10 @@ const app = express();
 
 //Middlewares
 
-
+app.use( express.json() );
+app.use(express.urlencoded({extended: false}))
 //Routes
-
+require("./app/routes/employees.routes")(app)
 
 //Libraries
 
