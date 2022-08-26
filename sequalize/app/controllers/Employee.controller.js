@@ -29,7 +29,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
 	//var response = await Employee.findAll();
     Employee.
-        findAll({attributes: {exclude:['createdAt', 'updatedAt']} })
+        findAll()
 		.then((data) => res.send(data))
 		.catch((err) => {
 			res.status(500).send({
