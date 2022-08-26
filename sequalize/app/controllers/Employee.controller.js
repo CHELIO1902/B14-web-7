@@ -28,7 +28,8 @@ exports.create = (req, res) => {
 //find employees
 exports.findAll = (req, res) => {
 	//var response = await Employee.findAll();
-	Employee.findAll()
+    Employee.
+        findAll({attributes: {exclude:['createdAt', 'updatedAt']} })
 		.then((data) => res.send(data))
 		.catch((err) => {
 			res.status(500).send({
@@ -38,5 +39,39 @@ exports.findAll = (req, res) => {
 };
 
 //update employees
+exports.update = ( req, res ) => {
+	const id = req.params.id;
+	const fields = req.body;
 
-//delete employees
+	Employee.update( fields, {
+		where: {employee_id : id}
+	} ).then( response => {
+		//console.log(response)
+		res.send( {
+			message: "The employee has been updated"
+		} )
+	} ).catch( err => {
+		console.log(err)
+		res.status( 500 ).send( {
+			message: "something went wrong"
+		})
+	})
+
+
+}
+exports.delete = ( req, res ) => {
+	const id = req.params.id;
+	Employee.destroy( {
+		where: {employee_id : id}
+	} ).then( response => {
+		res.send({message: "the employee has been removed!!"})
+	} ).catch( err => {
+		console.log(err)
+		res.status( 500 ).send( {
+			message: "something went wrong"
+		})
+	})
+}
+
+//find by employee id
+
